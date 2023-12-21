@@ -12,6 +12,15 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   name      String
-  userName  String @unique
+  userName  String   @unique
   password  String
+}
+
+model Joke {
+  id         String   @id @default(uuid())
+  jokesterId String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  name       String
+  content    String
 }
