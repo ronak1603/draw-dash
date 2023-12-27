@@ -2,7 +2,6 @@
   "name": "draw-dash",
   "private": true,
   "sideEffects": false,
-  "type": "module",
   "scripts": {
     "build": "remix build",
     "dev": "remix dev --manual",
@@ -16,7 +15,8 @@
     "@remix-run/node": "^2.4.0",
     "@remix-run/react": "^2.4.0",
     "@remix-run/serve": "^2.4.0",
-    "@tldraw/tldraw": "^2.0.0-canary.ed37bcf54126",
+    "@remix-run/server-runtime": "^2.4.1",
+    "@tldraw/tldraw": "^1.29.2",
     "bcryptjs": "^2.4.3",
     "isbot": "^3.6.8",
     "react": "^18.2.0",
