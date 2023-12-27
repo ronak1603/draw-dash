@@ -1,6 +1,20 @@
+// app/utils/prisma.server.ts
 import { PrismaClient } from "@prisma/client";
 
-import { singleton } from "./singleton.server";
+let prisma: PrismaClient;
+declare global {
+  var __db: PrismaClient | undefined;
+}
 
-// Hard-code a unique key, so we can look up the client when this module gets re-imported
-export const db = singleton("prisma", () => new PrismaClient());
+if (process.env.NODE_ENV === "production") {
+  prisma = new PrismaClient();
+  prisma.$connect();
+} else {
+  if (!global.__db) {
+    global.__db = new PrismaClient();
+    global.__db.$connect();
+  }
+  prisma = global.__db;
+}
+
+export { prisma };
