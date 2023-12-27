@@ -6,8 +6,7 @@ async function seed() {
     data: {
       name: "ronak",
       userName: "kody",
-      // this is a hashed version of "twixrox"
-      password: "$2b$10$K7L1OJ45/4Y2nIvhRVpCe.FSmhDdWoXehVzJptJ/op0lSsvqNu/1u",
+      password: "$2y$10$GcK1J9Zs6D48Fvjx0R0E4eNif/e5WNSayx1AIJHmRutUk6aKNoO8q",
     },
   });
   await Promise.all(
