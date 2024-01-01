@@ -1,4 +1,4 @@
-const onValidUsername = (userName: string): string | undefined => {
+export const onValidUsername = (userName: string): string | undefined => {
   const usernameRegex = /^[a-z0-9_.]+$/;
   if (!usernameRegex.test(userName)) {
     return "Please enter a valid email address";
