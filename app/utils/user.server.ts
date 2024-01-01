@@ -12,5 +12,5 @@ export const createUser = async (user: RegisterForm) => {
       password: passwordHash,
     },
   });
-  return { id: newUser.id, userName: user.userName };
+  return { id: newUser.id, userName: user.userName, name: user.name };
 };
