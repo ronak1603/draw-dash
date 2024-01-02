@@ -3,9 +3,10 @@ import {
   ActionFunction,
   ActionFunctionArgs,
   LoaderFunction,
-  json,
+  MetaFunction,
   redirect,
 } from "@remix-run/node";
+import { useActionData } from "@remix-run/react";
 
 import { FormField } from "~/components/formField";
 import { Layout } from "~/components/layout";
@@ -15,9 +16,15 @@ import {
   validatePassword,
 } from "~/utils/validators.server";
 import { getUser, login, register } from "~/utils/auth.server";
-import { useActionData } from "@remix-run/react";
 import { badRequest } from "~/utils/request.server";
 import { prisma } from "~/utils/db.server";
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: "Login | Drawdash" },
+    { name: "description", content: "Welcome to Drawdash!" },
+  ];
+};
 
 export const action: ActionFunction = async ({
   request,
@@ -27,7 +34,6 @@ export const action: ActionFunction = async ({
   const userName = form.get("userName");
   const password = form.get("password");
   const fullName = form.get("name");
-  console.log("#### formdata", form);
   if (
     typeof action !== "string" ||
     typeof userName !== "string" ||
@@ -47,8 +53,6 @@ export const action: ActionFunction = async ({
       formError: "Form not submitted correctly.",
     });
   }
-
-  console.log("#### after register");
 
   const fields = {
     action,
@@ -133,39 +137,11 @@ export const loader: LoaderFunction = async ({ request }) => {
 export default function Login() {
   const actionData = useActionData<typeof action>();
 
-  console.log(actionData, " #### actionData");
-
-  const firstLoad = useRef(true);
-
-  const [formError, setFormError] = useState("");
-
   const [formData, setFormData] = useState({
     userName: "",
     password: "",
     name: "",
   });
-
-  useEffect(() => {
-    if (!firstLoad.current) {
-      const newState = {
-        name: "",
-        userName: "kody",
-        password: "ronak123",
-      };
-      setFormError("");
-      setFormData(newState);
-    }
-  }, [action]);
-
-  useEffect(() => {
-    if (!firstLoad.current) {
-      setFormError("");
-    }
-  }, [formData]);
-
-  useEffect(() => {
-    firstLoad.current = false;
-  }, []);
 
   const handleInputChange = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -195,7 +171,7 @@ export default function Login() {
 
         <form method="POST" className="rounded-2xl bg-gray-200 p-6 w-96">
           <div className="text-xs font-semibold text-center tracking-wide text-red-500 w-full">
-            {formError}
+            {/* {formError} */}
           </div>
           {actionData.fields.action === "register" && (
             <FormField
