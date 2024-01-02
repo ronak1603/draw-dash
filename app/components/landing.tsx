@@ -92,17 +92,17 @@ function Landing() {
           </p>
           {/* Insert Contact Form Here */}
           <a
-            href="mailto:aryankush025@gmail.com"
+            href="mailto:ronakmalani2002@gmail.com"
             className="underline text-blue-500"
           >
-            aryankush025@gmail.com
+            ronakmalani2002@gmail.com
           </a>
         </div>
       </section>
 
       {/* Footer */}
       <footer className="bg-blue-500 text-white text-center p-6">
-        <p className="font-semibold">Crafted with Passion by Aryan Agarwal</p>
+        <p className="font-semibold">Crafted with Passion by Ronak Malani</p>
         <a
           href="https://github.com/aryankush25"
           target="_blank"
