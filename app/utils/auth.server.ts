@@ -1,11 +1,9 @@
-// app/utils/auth.server.ts
+import bcrypt from "bcryptjs";
+import { json, createCookieSessionStorage, redirect } from "@remix-run/node";
 
 import { prisma } from "./db.server";
 import type { LoginForm, RegisterForm } from "./types.server";
 import { createUser } from "./user.server";
-import bcrypt from "bcryptjs";
-
-import { json, createCookieSessionStorage, redirect } from "@remix-run/node";
 
 const sessionSecret = process.env.SESSION_SECRET;
 if (!sessionSecret) {
@@ -91,7 +89,7 @@ function getUserSession(request: Request) {
   return storage.getSession(request.headers.get("Cookie"));
 }
 
-async function getUserId(request: Request) {
+export async function getUserId(request: Request) {
   const session = await getUserSession(request);
   const userId = session.get("userId");
   if (!userId || typeof userId !== "string") return null;
